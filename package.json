@@ -1,5 +1,5 @@
 {
-  "name": "loglevel-plugin-remote",
+  "name": "@markmo/loglevel-plugin-remote",
   "description": "A loglevel plugin for sending browser logs to a server",
   "author": {
     "name": "markmo"
