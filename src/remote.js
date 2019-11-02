@@ -278,7 +278,7 @@ const remote = {
       xhr.open(config.method, config.url, true);
       xhr.setRequestHeader('Content-Type', contentType);
       if (config.token) {
-        xhr.setRequestHeader('Authorization', `Bearer ${config.token}`);
+        xhr.setRequestHeader('Authorization', `JWT ${config.token}`);
       }
 
       const { headers } = config;

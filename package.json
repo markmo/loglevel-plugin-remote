@@ -2,19 +2,19 @@
   "name": "loglevel-plugin-remote",
   "description": "A loglevel plugin for sending browser logs to a server",
   "author": {
-    "name": "kutuluk"
+    "name": "markmo"
   },
   "keywords": [
     "loglevel",
     "plugin"
   ],
-  "homepage": "https://github.com/kutuluk/loglevel-plugin-remote",
+  "homepage": "https://github.com/markmo/loglevel-plugin-remote",
   "bugs": {
-    "url": "https://github.com/kutuluk/loglevel-plugin-remote/issues"
+    "url": "https://github.com/markmo/loglevel-plugin-remote/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:kutuluk/loglevel-plugin-remote.git"
+    "url": "git@github.com:markmo/loglevel-plugin-remote.git"
   },
   "license": "MIT",
   "version": "0.6.8",
@@ -61,5 +61,8 @@
     "sinon": "^6.3.4",
     "uglify-js": "^3.4.9"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
