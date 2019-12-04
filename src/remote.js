@@ -210,6 +210,8 @@ const defaults = {
   },
   timestamp: () => new Date().toISOString(),
   format: plain,
+  sendArray: false,
+  tokenLabel: 'JWT',
 };
 
 const remote = {
@@ -269,7 +271,16 @@ const remote = {
 
         const logs = queue.send();
 
-        queue.content = isJSON ? `{"logs":[${logs.join(',')}]}` : logs.join('\n');
+        // queue.content = isJSON ? `{"logs":[${logs.join(',')}]}` : logs.join('\n');
+        if (isJSON) {
+          if (config.sendArray) {
+            queue.content = `[${logs.join(',')}]`;
+          } else {
+            queue.content = `{"logs":[${logs.join(',')}]}`;
+          }
+        } else {
+          queue.content = logs.join('\n');
+        }
       }
 
       isSending = true;
@@ -278,7 +289,7 @@ const remote = {
       xhr.open(config.method, config.url, true);
       xhr.setRequestHeader('Content-Type', contentType);
       if (config.token) {
-        xhr.setRequestHeader('Authorization', `JWT ${config.token}`);
+        xhr.setRequestHeader('Authorization', `${config.tokenLabel} ${config.token}`);
       }
 
       const { headers } = config;
@@ -322,7 +333,7 @@ const remote = {
         isSending = false;
         win.clearTimeout(timeout);
 
-        if (xhr.status === 200) {
+        if (xhr.status === 200 || xhr.status === 202) {
           // eslint-disable-next-line prefer-destructuring
           interval = config.interval;
           queue.confirm();
